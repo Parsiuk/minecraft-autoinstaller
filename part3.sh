@@ -49,8 +49,8 @@ services:
       - /srv/minecraft:/data
 EOL
 
-echo "Enter the RCON password for your Minecraft server and press enter (you can change this later in the .env file):"
-echo -n "RCON_PASSWORD: "
+echo "Lets create RCON password for your Minecraft server (you can change this later in the .env file):"
+echo -n "Enter RCON_PASSWORD: "
 read -s RCON_PASSWORD
 cat > ~/minecraft-docker-stack/.env <<EOL
 RCON_PASSWORD=${RCON_PASSWORD}
@@ -59,4 +59,4 @@ EOL
 echo "Docker-compose file created at ~/minecraft-docker-stack/docker-compose.yml"
 cd ~/minecraft-docker-stack
 docker compose up -d
-echo "Minecraft server is starting up. You can check the logs with 'docker compose logs -f' in the ~/minecraft-docker-stack directory."
+echo "Minecraft server is starting up. You can check the logs with 'docker logs minecraft_${HOSTNAME}'"
