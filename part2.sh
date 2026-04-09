@@ -42,7 +42,7 @@ fi
 sudo usermod -aG docker $USER
 
 # Performance benchmark
-echo "Running Docker performance benchmark..."
+echo "Running performance benchmark..."
 BENCHMARK_RESULT=$(sysbench cpu --threads=1 run | grep 'total number of events' | awk '{print $5}')
 
 # If benchmark result is less than 20000, warn the user
