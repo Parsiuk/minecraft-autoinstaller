@@ -6,10 +6,9 @@ A set of shell scripts that automate the installation of a Minecraft Java Editio
 
 ## Prerequisites
 
-- A Debian-based Linux system (e.g., Debian, Ubuntu)
+- Debian 13
 - At least 2 GB of RAM (1 GB is reserved for the system, the rest is allocated to Minecraft)
 - Root or sudo access (the installer will set up sudo if not already configured)
-- Network access to download packages and Docker images
 
 ## What It Does
 

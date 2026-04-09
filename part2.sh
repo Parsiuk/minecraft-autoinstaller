@@ -9,7 +9,7 @@ sudo apt remove $(dpkg --get-selections docker.io docker-compose docker-doc podm
 
 # Add Docker's official GPG key:
 sudo apt update
-sudo apt install ca-certificates curl bc -y
+sudo apt install ca-certificates curl bc sysbench -y
 sudo install -m 0755 -d /etc/apt/keyrings
 sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
 sudo chmod a+r /etc/apt/keyrings/docker.asc
@@ -40,6 +40,17 @@ if ! getent group docker > /dev/null 2>&1; then
 fi
 
 sudo usermod -aG docker $USER
+
+# Performance benchmark
+echo "Running Docker performance benchmark..."
+BENCHMARK_RESULT=$(sysbench cpu --threads=1 run | grep 'total number of events' | awk '{print $5}')
+
+# If benchmark result is less than 20000, warn the user
+if [ "$BENCHMARK_RESULT" -lt 20000 ]; then
+    echo "Warning: System performance benchmark result is $BENCHMARK_RESULT, which is below the recommended threshold of 20000. Your Minecraft server may experience performance issues."
+else
+    echo "System performance benchmark result is $BENCHMARK_RESULT, which is above the recommended threshold."
+fi
 
 echo "Docker installation complete. Launch part 3 of the installation script: ./part3.sh"
 
