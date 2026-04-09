@@ -35,7 +35,7 @@ services:
       EULA: "TRUE"
       INIT_MEMORY: "1G"
       MAX_MEMORY: "${MINECRAFT_MEMORY}G"
-      TYPE: "PAPER"
+      TYPE: "VANILLA"
       VERSION: "1.21.11"
       UID: "${UID}"
       GID: "${GID}"
