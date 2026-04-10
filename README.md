@@ -1,4 +1,4 @@
-# Minecraft Autoinstaller
+# Minecraft Server Autoinstaller
 
 ## Purpose
 
