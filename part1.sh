@@ -4,6 +4,7 @@
 set -e
 
 # Part 1: Check if user is in sudo group
+
 if groups "$(whoami)" | grep -q "\bsudo\b"; then
     echo "User is in the sudo group. Continuing with installation..."
 else
@@ -19,5 +20,7 @@ else
     su - -c "usermod -aG sudo $current_user"
     echo "User '$current_user' has been added to the sudo group. At this stage you can test sudo access and install ant other packages which you may need."
     echo "Lanuch part 2 of the installation script to continue: ./part2.sh"
+
+    # Newgrp is needed to apply new group membership for sudo without logging out and back in
     newgrp sudo
 fi

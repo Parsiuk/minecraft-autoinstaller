@@ -40,6 +40,7 @@ if ! getent group docker > /dev/null 2>&1; then
     sudo groupadd docker
 fi
 
+# Add the current user to the docker group
 sudo usermod -aG docker "${USER}"
 
 # Performance benchmark
@@ -48,11 +49,12 @@ BENCHMARK_RESULT=$(sysbench cpu --threads=1 run | grep 'total number of events' 
 
 # If benchmark result is less than 20000, warn the user
 if [ "$BENCHMARK_RESULT" -lt 20000 ]; then
-    echo "Warning: System performance benchmark result is $BENCHMARK_RESULT, which is below the recommended threshold of 20000. Your Minecraft server may experience performance issues."
+    echo -e "\e[31mWarning:\e[0m System performance benchmark result is $BENCHMARK_RESULT, which is below the recommended threshold of 20000. Your Minecraft server may experience performance issues."
 else
     echo "System performance benchmark result is $BENCHMARK_RESULT, which is above the recommended threshold."
 fi
 
 echo "Docker installation complete. Launch part 3 of the installation script: ./part3.sh"
 
+# Newgrp is needed to apply new group membership for docker without logging out and back in
 newgrp docker
