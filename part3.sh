@@ -51,7 +51,7 @@ EOL
 
 echo "Lets create RCON password for your Minecraft server (you can change this later in the .env file):"
 echo -n "Enter RCON_PASSWORD: "
-read -s RCON_PASSWORD
+read -r -s RCON_PASSWORD
 cat > ~/minecraft-docker-stack/.env <<EOL
 RCON_PASSWORD=${RCON_PASSWORD}
 EOL

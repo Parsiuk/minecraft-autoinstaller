@@ -5,7 +5,7 @@ set -e
 # Part 2: Docker-ce installation
 
 echo "Removing old versions of Docker if they exist..."
-sudo apt remove $(dpkg --get-selections docker.io docker-compose docker-doc podman-docker containerd runc | cut -f1)
+sudo apt remove "$(dpkg --get-selections docker.io docker-compose docker-doc podman-docker containerd runc | cut -f1)"
 
 # Add Docker's official GPG key:
 sudo apt update
@@ -39,7 +39,7 @@ if ! getent group docker > /dev/null 2>&1; then
     sudo groupadd docker
 fi
 
-sudo usermod -aG docker $USER
+sudo usermod -aG docker "${USER}"
 
 # Performance benchmark
 echo "Running performance benchmark..."

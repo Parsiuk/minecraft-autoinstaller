@@ -4,7 +4,7 @@
 set -e
 
 # Part 1: Check if user is in sudo group
-if groups $(whoami) | grep -q "\bsudo\b"; then
+if groups "$(whoami)" | grep -q "\bsudo\b"; then
     echo "User is in the sudo group. Continuing with installation..."
 else
     echo "User is not in the sudo group. Installing sudo and adding user to sudo group..."
